@@ -22,16 +22,5 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
-
-    @Override
-    public void onStartup(ServletContext servletContext) {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-
-        FilterRegistration.Dynamic filterRegistration = servletContext
-                .addFilter("characterEncodingFilter", characterEncodingFilter);
-        filterRegistration.addMappingForUrlPatterns(null, false, "/*");
-    }
 }
 

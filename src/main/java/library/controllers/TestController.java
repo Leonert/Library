@@ -14,9 +14,4 @@ public class TestController {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    @GetMapping("/test")
-    String test() {
-        System.out.println("а в консоли видно?");
-        return "test";
-    }
 }
