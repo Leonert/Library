@@ -40,8 +40,6 @@ public class SpringConfig implements WebMvcConfigurer {
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
 
-        System.out.println("привет из бина");
-
         return templateResolver;
     }
 
