@@ -5,6 +5,18 @@
     <title>Title</title>
 </head>
 <body>
+<form th:method="POST" th:action="@{{id}(id=${book.id})}" th:object="${book}">
+    <label for="title">Enter title</label>
+    <input type="text" th:field="${book.title}" id="title">
+    <br>
+    <label for="author">Enter author</label>
+    <input type="text" th:field="${book.author}" id="author">
+    <br>
+    <label for="year">Enter year</label>
+    <input type="text" th:field="${book.year}" id="year">
 
+    <input type="submit">
+</form>
+<a href="/book">Go back to book list</a>
 </body>
 </html>

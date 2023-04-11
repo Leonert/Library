@@ -16,12 +16,16 @@ public class BookDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addBook(String title, String author, int year) {
-        jdbcTemplate.update("insert into book (title, author, year) values (?, ?, ?)", title, author, year);
+    public void addBook(Book book) {
+        jdbcTemplate.update("insert into book (title, author, year) values (?, ?, ?)", book.getTitle(), book.getAuthor(), book.getYear());
     }
 
     public void editBook(int id, String title, String author, int year) {
         jdbcTemplate.update("update book set title=?, author=?, year=? where id=?", title, author, year, id);
+    }
+
+    public void editBook(Book book) {
+        editBook(book.getId(), book.getTitle(), book.getAuthor(), book.getYear());
     }
 
     public void deleteBook(int id) {

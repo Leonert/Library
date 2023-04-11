@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<form th:method="POST" th:action="@{{id}(id=${person.id})}" th:object="${person}">
+    <label for="title">Enter FIO</label>
+    <input type="text" th:field="${person.FIO}" id="title">
+    <br>
+    <label for="author">Enter year of birth</label>
+    <input type="text" th:field="${person.yearOfBirth}" id="author">
 
+    <input type="submit">
+</form>
+<a href="/person/">Go back to person list</a>
 </body>
 </html>

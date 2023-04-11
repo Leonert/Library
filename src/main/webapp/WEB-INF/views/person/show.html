@@ -5,6 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-
+<div>
+    Id: <b th:text="${person.id}"></b>
+    <br>
+    FIO: <b th:text="${person.FIO}"></b>
+    <br>
+    Year of birth: <b th:text="${person.yearOfBirth}"></b>
+</div>
+<a th:href="@{/person/edit/{id}(id=${person.id})}">Edit person</a>
+<br>
+<form th:action="@{/person/delete/{id}(id=${person.id})}" method="post">
+    <button type="submit">Delete</button>
+</form>
+<br>
+<br>
+<a href="/person">Go back to book list</a>
 </body>
 </html>

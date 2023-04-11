@@ -6,7 +6,21 @@
 </head>
 <body>
 <div>
-    <b th:text="${book.id}"></b>
+    Id: <b th:text="${book.id}"></b>
+    <br>
+    Title: <b th:text="${book.title}"></b>
+    <br>
+    Author: <b th:text="${book.author}"></b>
+    <br>
+    Year: <b th:text="${book.getYear()}"></b>
 </div>
+<a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a>
+<br>
+<form th:action="@{/book/delete/{id}(id=${book.id})}" method="post">
+    <button type="submit">Delete</button>
+</form>
+<br>
+<br>
+<a href="/book">Go back to book list</a>
 </body>
 </html>

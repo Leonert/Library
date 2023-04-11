@@ -20,8 +20,16 @@ public class PersonDAO {
         jdbcTemplate.update("insert into person (fio, yearofbirth) values (?, ?)", FIO, yearOfBirth);
     }
 
+    public void addPerson(Person person) {
+        addPerson(person.getFIO(), person.getYearOfBirth());
+    }
+
     public void editPerson(int id, String FIO, int yearOfBirth) {
         jdbcTemplate.update("update person set FIO=?,yearofbirth=? where id=?", FIO, yearOfBirth, id);
+    }
+
+    public void editPerson(Person person) {
+        editPerson(person.getId(), person.getFIO(), person.getYearOfBirth());
     }
 
     public void deletePerson(int id) {
