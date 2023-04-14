@@ -1,5 +1,6 @@
 package library.DAO;
 
+import library.models.Book;
 import library.models.Person;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,4 +44,9 @@ public class PersonDAO {
     public Optional<Person> show(int id) {
         return jdbcTemplate.query("select * from person where id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
+
+    public List<Book> takenBooks(int id) {
+        return jdbcTemplate.query("select id, title, author, year from taken_books join book b on b.id = taken_books.book_id where person_id = ?;", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
+    }
+
 }

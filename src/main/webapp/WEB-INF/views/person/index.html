@@ -15,12 +15,14 @@
     </thead>
     <tbody>
     <tr th:each="person: ${people}">
-        <td><a th:href="@{person/{id}(id=${person.id})}" th:text="${person.id}">Id</a> </td>
+        <td><a th:href="@{/person/{id}(id=${person.id})}" th:text="${person.id}">Id</a> </td>
         <td><span th:text="${person.FIO}">FIO</span> </td>
         <td><span th:text="${person.yearOfBirth}">Year of birth</span> </td>
     </tr>
     </tbody>
 </table>
 <a href="/person/add">Add new person</a>
+<br>
+<a href="/book/">Book list</a>
 </body>
 </html>

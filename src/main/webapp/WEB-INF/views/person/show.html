@@ -14,11 +14,31 @@
 </div>
 <a th:href="@{/person/edit/{id}(id=${person.id})}">Edit person</a>
 <br>
+<div th:if="not ${books.isEmpty()}">
+    <h3>Taken books</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.id}" th:href="@{book/{id}(id=${book.id})}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.year}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<h3 th:if="${books.isEmpty()}">Person haven`t taken any book yet</h3>
 <form th:action="@{/person/delete/{id}(id=${person.id})}" method="post">
     <button type="submit">Delete</button>
 </form>
-<br>
-<br>
 <a href="/person">Go back to book list</a>
 </body>
 </html>

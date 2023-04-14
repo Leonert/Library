@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <tr th:each="book: ${books}">
-        <td><a th:href="@{book/{id}(id=${book.id})}" th:text="${book.id}">Id</a> </td>
+        <td><a th:href="@{/book/{id}(id=${book.id})}" th:text="${book.id}">Id</a> </td>
         <td><span th:text="${book.getTitle()}">Title</span> </td>
         <td><span th:text="${book.getAuthor()}">Author</span> </td>
         <td><span th:text="${book.getYear()}">Year</span> </td>
@@ -24,5 +24,7 @@
     </tbody>
 </table>
 <a href="/book/add">Add new book</a>
+<br>
+<a href="/person/">Person list</a>
 </body>
 </html>
