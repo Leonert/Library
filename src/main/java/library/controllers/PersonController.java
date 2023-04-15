@@ -2,6 +2,7 @@ package library.controllers;
 
 import library.DAO.PersonDAO;
 import library.models.Person;
+import library.utils.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,12 @@ import java.util.Optional;
 @RequestMapping("/person")
 public class PersonController {
     private final PersonDAO personDAO;
+    private final PersonValidator personValidator;
 
     @Autowired
-    public PersonController(PersonDAO personDAO) {
+    public PersonController(PersonDAO personDAO, PersonValidator personValidator) {
         this.personDAO = personDAO;
+        this.personValidator = personValidator;
     }
 
 
@@ -43,7 +46,7 @@ public class PersonController {
 
     @PostMapping("/add")
     public String addPost(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
-        if (!personDAO.isFIOUnique(person.getFIO())) bindingResult.rejectValue("FIO", "exists", "such user already exists");
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors()) return "person/add";
         personDAO.addPerson(person);
         return "redirect:/person";
