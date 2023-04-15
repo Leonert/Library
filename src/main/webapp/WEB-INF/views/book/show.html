@@ -8,35 +8,35 @@
 <div>
     Id: <b th:text="${book.id}"></b>
     <br>
-    Title: <b th:text="${book.title}"></b>
+    Название: <b th:text="${book.title}"></b>
     <br>
-    Author: <b th:text="${book.author}"></b>
+    Автор: <b th:text="${book.author}"></b>
     <br>
-    Year: <b th:text="${book.getYear()}"></b>
+    Год: <b th:text="${book.getYear()}"></b>
     <br>
     <div th:if="${person.isPresent()}">
         Taken by: <b th:text="${person.get().FIO}"></b>
         <form th:action="@{/book/release/{id}(id=${book.id})}" method="post">
-            <button type="submit">Release the book</button>
+            <button type="submit">Освободить книгу</button>
         </form>
     </div>
 </div>
 <div th:if="${person.isEmpty()}">
-    Book haven`t been taken by anyone yet
+    Книгу пока что никто не взял
     <br>
     <form th:method="post" th:action="@{/book/issue/{id}(id=${book.id})}">
-        <label for="person">Issue book to:</label>
+        <label for="person">Книга не назначена. Назначить книгу:</label>
         <select id="person" th:object="${emptyPerson}" th:field="*{id}">
             <option th:each="person: ${people}" th:value="${person.id}" th:text="${person.FIO}">text</option>
         </select>
-        <button type="submit">Issue the book</button>
+        <button type="submit">Назначить</button>
     </form>
 </div>
-<a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a>
+<a th:href="@{/book/edit/{id}(id=${book.id})}">Редактировать книгу</a>
 <br>
 <form th:action="@{/book/delete/{id}(id=${book.id})}" method="post">
-    <button type="submit">Delete the book</button>
+    <button type="submit">Удалить книгу</button>
 </form>
-<a href="/book">Go back to book list</a>
+<a href="/book">Вернуться к списку книг</a>
 </body>
 </html>

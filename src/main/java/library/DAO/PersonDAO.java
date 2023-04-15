@@ -49,4 +49,7 @@ public class PersonDAO {
         return jdbcTemplate.query("select id, title, author, year from taken_books join book b on b.id = taken_books.book_id where person_id = ?;", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
     }
 
+    public boolean isFIOUnique(String FIO) {
+        return jdbcTemplate.query("select * from person where fio = ?", new Object[]{FIO}, new BeanPropertyRowMapper<>(Person.class)).isEmpty();
+    }
 }

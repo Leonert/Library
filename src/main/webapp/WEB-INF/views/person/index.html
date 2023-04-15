@@ -9,20 +9,20 @@
     <thead>
     <tr>
         <th>Id</th>
-        <th>FIO</th>
-        <th>Year of birth</th>
+        <th>ФИО</th>
+        <th>Год рождения</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="person: ${people}">
         <td><a th:href="@{/person/{id}(id=${person.id})}" th:text="${person.id}">Id</a> </td>
-        <td><span th:text="${person.FIO}">FIO</span> </td>
-        <td><span th:text="${person.yearOfBirth}">Year of birth</span> </td>
+        <td><span th:text="${person.FIO}">ФИО</span> </td>
+        <td><span th:text="${person.yearOfBirth}">Год рождения</span> </td>
     </tr>
     </tbody>
 </table>
-<a href="/person/add">Add new person</a>
+<a href="/person/add">Добавить нового посетителя</a>
 <br>
-<a href="/book/">Book list</a>
+<a href="/book/">Список книг</a>
 </body>
 </html>

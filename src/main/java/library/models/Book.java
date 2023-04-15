@@ -1,8 +1,18 @@
 package library.models;
 
+import javax.validation.constraints.*;
+
 public class Book {
     private int id;
 
+    @NotEmpty(message = "Название не должно быть пустым")
+    @Size(min = 2, max = 50, message = "Название должно содержать от 2 до 50 символов")
+    private String title;
+    @Pattern(regexp = "[А-Я][а-я]+ [А-Я][а-я]+", message = "Имя автора должно быть в формате Имя Фамилия")
+    private String author;
+    @Min(value = 1500, message = "Год должен быть не меньше 1500")
+    @Max(value = 2023, message = "Год должен быть не больше 2023")
+    private int year;
     public int getId() {
         return id;
     }
@@ -10,10 +20,6 @@ public class Book {
     public void setId(int id) {
         this.id = id;
     }
-
-    private String title;
-    private String author;
-    private int year;
 
     public String getTitle() {
         return title;

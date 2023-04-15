@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -46,7 +47,7 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public String addPost(@ModelAttribute("book") Book book, BindingResult bindingResult) {
+    public String addPost(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "book/add";
         bookDAO.addBook(book);
         return "redirect:/book";
@@ -61,13 +62,14 @@ public class BookController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") int id, Model model) {
         Optional<Book> book = bookDAO.show(id);
-        if(book.isEmpty()) return "redirect:/book";
+        if(book.isEmpty()) return "redirect:book";
         model.addAttribute("book", book.get());
         return "book/edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String editPost(@ModelAttribute("book") Book book) {
+    public String editPost(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult, @PathVariable("id") int id) {
+        if(bindingResult.hasErrors()) return "book/edit";
         bookDAO.editBook(book);
         return "redirect:/book";
     }
