@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Год</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books.getContent()}">
+        <td><a th:href="@{/book/{id}(id=${book.id})}" th:text="${book.id}">Id</a> </td>
+        <td><span th:text="${book.getTitle()}">Title</span> </td>
+        <td><span th:text="${book.getAuthor()}">Author</span> </td>
+        <td><span th:text="${book.getYear()}">Year</span> </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<b th:if="${books.getTotalPages()>0}" th:each="pageNumber: ${pageNumbers}">
+    <a th:href="@{/book(page=${pageNumber})}" th:text="${pageNumber}"></a>
+</b>
+<br>
+Sort by:
+<a href="/book?sortBy=id">Id</a>
+<a href="/book?sortBy=author">Author</a>
+<a href="/book?sortBy=year">Year</a>
+<br>
+<a href="/book/add">Добавить новую книгу</a>
+<br>
+<a href="/person">Список читателей</a>
+<br>
+<a href="/book/search">Поиск книги</a>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    Id: <b th:text="${person.id}"></b>
+    <br>
+    ФИО: <b th:text="${person.FIO}"></b>
+    <br>
+    Год рождения: <b th:text="${person.yearOfBirth}"></b>
+</div>
+<a th:href="@{/person/edit/{id}(id=${person.id})}">Редактировать человека</a>
+<br>
+<div th:if="not ${books.isEmpty()}">
+    <h3>Взятые книги</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Год</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.id}" th:href="@{book/{id}(id=${book.id})}"></td>
+        <td th:style="${book.isBookDelayed() ? 'color:red' : 'color:blue'}" th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+        <td th:text="${book.year}"></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<h3 th:if="${books.isEmpty()}">Человек пока не взял ни одной книги</h3>
+<form th:action="@{/person/delete/{id}(id=${person.id})}" method="post">
+    <button type="submit">Удалить посетителя</button>
+</form>
+<a href="/person">Вернуться к списку посетителей</a>
+</body>
+</html>
