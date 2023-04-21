@@ -67,4 +67,8 @@ public class BookService {
             value.setDateOfIssue(new Date());
         });
     }
+
+    public List<Book> findBook(String query) {
+        return bookRepository.findByTitleContaining(query);
+    }
 }

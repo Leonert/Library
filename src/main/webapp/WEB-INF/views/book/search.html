@@ -13,8 +13,8 @@
 </form>
 
 <div th:if="${foundBooks != null}">
-    <b th:if="${foundBooks.isEmpty()} Книг по такому запросу не найдено"></b>
-<table th:if="${!foundBooks.isEmpty()}">
+    <h1 th:if="${foundBooks.isEmpty()}">Книг с таким названием не найдено</h1>
+<table th:unless="${foundBooks.isEmpty()}">
     Найденные книги:
     <thead>
     <tr>

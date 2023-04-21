@@ -96,4 +96,10 @@ public class BookController {
         bookService.issueBook(id, person);
         return "redirect:/book";
     }
+
+    @GetMapping("/search")
+    public String findBook(Model model, @RequestParam(required = false) String query) {
+        if(query != null && !query.isEmpty()) model.addAttribute("foundBooks", bookService.findBook(query));
+        return "book/search";
+    }
 }
